@@ -28,4 +28,4 @@ def play():
     
 ```
 
-this code will run in sequence by first getting the computers choice, then the users choice, then checking who between the two is a winner and finally printing out 'You won', 'You lost' or 'It is a tie'
+This code will run in sequence by first getting the computers choice, then the users choice, then checking who between the two is a winner and finally printing out 'You won', 'You lost' or 'It is a tie'
