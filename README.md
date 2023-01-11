@@ -33,3 +33,6 @@ def play():
 ```
 
 This code will run in sequence by first getting the computers choice, then the users choice, then checking who between the two is a winner and finally printing out 'You won', 'You lost' or 'It is a tie'
+
+## Final code <img width="1040" alt="Screenshot 2023-01-11 at 19 09 54" src="https://user-images.githubusercontent.com/118231395/211896583-7dbca879-093c-4aa2-8183-4f77b5fadd1d.png">
+
