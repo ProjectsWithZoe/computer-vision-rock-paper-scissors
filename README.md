@@ -25,6 +25,7 @@ def play():
     get_computer_choice()
     get_user_choice()
     get_winner() 
-    ```
+    
+```
 
 this code will run in sequence by first getting the computers choice, then the users choice, then checking who between the two is a winner and finally printing out 'You won', 'You lost' or 'It is a tie'
