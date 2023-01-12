@@ -14,16 +14,13 @@ def get_prediction():
         normalized_image = (image_np.astype(np.float32) / 127.0) - 1 # Normalize the image
         data[0] = normalized_image
         prediction = model.predict(data)
-        highest_prediction = np.argmax(prediction, axis=1)
-        highest_prediction=highest_prediction[0]
-        predicted_class = classes[highest_prediction]
         cv2.imshow('frame', frame)
         # Press q to close the window
-        print(highest_prediction)
-        print(predicted_class)
+        #print(highest_prediction)
+        #print(predicted_class)
         if cv2.waitKey(1) & 0xFF == ord('q'):
             break
-            
+        return prediction
     # After the loop release the cap object
     cap.release()
     # Destroy all the windows
