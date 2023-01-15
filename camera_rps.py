@@ -53,9 +53,9 @@ def get_prediction():
         if cv2.waitKey(1) & 0xFF == ord('q'):
             break
     if user_wins == 3:
-        print("You won!")
+        return "You won!"
     else:
-        print("You lost!")
+        return "You lost!"
 
         
 
