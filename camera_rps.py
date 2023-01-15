@@ -10,7 +10,7 @@ def get_prediction():
     data = np.ndarray(shape=(1, 224, 224, 3), dtype=np.float32)
     classes = ['Rock', 'Paper', 'Scissors', 'Nothing']
 
-    rounds=5
+    rounds_played=0
     computer_wins=0
     user_wins=0
     choices =['Rock', 'Paper', 'Scissors']
@@ -19,7 +19,7 @@ def get_prediction():
 
     start_time = time.time()
 
-    while computer_wins<3 and user_wins<3: 
+    while rounds_played < 5 and computer_wins < 3 and user_wins < 3:
         ret, frame = cap.read()
         resized_frame = cv2.resize(frame, (224, 224), interpolation = cv2.INTER_AREA)
         image_np = np.array(resized_frame)
@@ -34,40 +34,49 @@ def get_prediction():
         if remaining_time <= 0:
             print(f"You chose {user_choice}")
             break
-        computer_choice = random.choice(choices)
-        print(f'Computer chose {computer_choice}')
 
-        if (computer_choice == user_choice):
-            rounds-=1
-            user_wins+=1
-            computer_wins+=1
-        elif (computer_choice =='Rock' and user_choice=='Scissors') or (computer_choice=='Paper' and user_choice=='Rock') or (computer_choice=='Scissors' and user_choice=='Paper'):
-            rounds-=1
-            computer_wins+=1
-        else:
-            rounds-=1
-            user_wins+=1
-        print(f'Computer : {computer_wins}, User: {user_wins}')
+        # Computer makes a random choice
+        computer_choice = random.choice(choices)
+        print(f"Computer chose {computer_choice}")
+
+        # Compare user's choice and computer's choice to determine round winner
+        if user_choice == "Rock":
+            if computer_choice == "Scissors":
+                print("You win!")
+                user_wins += 1
+            elif computer_choice == "Paper":
+                print("Computer wins!")
+                computer_wins += 1
+            else:
+                print("It's a tie!")
+        elif user_choice == "Paper":
+            if computer_choice == "Rock":
+                print("You win!")
+                user_wins += 1
+            elif computer_choice == "Scissors":
+                print("Computer wins!")
+                computer_wins += 1
+            else:
+                print("It's a tie!")
+        elif user_choice == "Scissors":
+            if computer_choice == "Paper":
+                print("You win!")
+                user_wins += 1
+            elif computer_choice == "Rock":
+                print("Computer wins!")
+                computer_wins += 1
+            else:
+                print("It's a tie!")
+        rounds_played += 1
+        print(f"Score: You {user_wins}, Computer {computer_wins}")
         cv2.imshow('frame', frame)
-        # Press q to close the window
         if cv2.waitKey(1) & 0xFF == ord('q'):
             break
     if user_wins == 3:
-        return "You won!"
+        print("Congratulations, you won the game!")
+    elif computer_wins == 3:
+        print("Sorry, the computer won the game.")
     else:
-        return "You lost!"
-
-        
-
-    # After the loop release the cap object
-    cap.release()
-    # Destroy all the windows
-    cv2.destroyAllWindows()
+        print("The game was a tie.")
 
 get_prediction()
-
-
-   
-
-
-# %%
